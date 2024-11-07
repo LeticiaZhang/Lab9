@@ -1,6 +1,6 @@
 ---
 title: "Lab9"
-author: "Your Name"
+author: "Can Zhang"
 date: "2024-11-07"
 output: "github_document"
 ---
@@ -13,7 +13,7 @@ library(bruceR)
 library(haven)
 
 
-lab9data<-read_sav("C:/Users/Colin/Documents/lab9data.sav")
+lab9data<-read_sav("C:/Users/User/Documents/GitHub/Lab9/lab9data.sav")
 
 
 
@@ -47,21 +47,37 @@ Alpha(lab9data, "FSMI", 1:6, rev = 3)
 #In factor analysis, using reverse scored items or not does not make a difference in interpretation. If you use unrecoded items, it will just make the loadings negative
 
 EFA(lab9data, "FSMI", 1:6, rev = 3, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
+# Generally good but the loading of reversed item is below .40
 
 ```
 # Now test reliability for the status seeking subscale
 ```{r}
 
+Alpha(lab9data, "FSMI", 31:36, rev = 36)
+
 ```
 # Q1: What is the Cronbach's alpha of this subscale? Is it a reliable measure of status seeking? Why? 
+The Cronbach's alpha of Scale Seeking subscale is .83, indicating that it is a reliable measure. Since the Cronbach's alpha is above .8, indicating that the items have good internal consistency reliability.
 
 # Now run a factor analysis on the Mate Retention (Breakup Concern) subscale
 ```{r}
 
-
+EFA(lab9data, "FSMI", 49:54, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
 
 ```
 
 # Q2: How many factors can you identify from the results? Based on what? What is the range of the factor loadings? What is item that has the highest factor loading? In conclusion, is this a good measure of break up concern and why?
+Based on the scree plot and parallel analysis, I can identify 1 factor from the results. The range of the factor loadings is .82-.94. FSMI51 has the highest factor loading of .94. Since all the factor loadings are above .6, this is a good measure of break up concern.
 
 # Q3: Pick another subscale from FSMI. Test reliability and factor analysis. Answer all the questions  above. 
+```{r}
+# Subscale: Kin Care (Family)
+# Test reliability
+Alpha(lab9data, "FSMI", 55:60, rev = 56:58)
+
+# Factor analysis
+EFA(lab9data, "FSMI", 55:60, rev = 56:58, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
+```
+
+The items have a Cronbach's alpha of .89, indicating good internal consistency for the items within the Kin Care (Family) subscale. Therefore, we can say that the measure of Kin Care (Family) is reliable.
+Based on the scree plot and parallel analysis, I can identify 1 factor fo the Kin Care (Family) subscale, explaining 66.32% of the variance. The range of the factor loadings is .72-.82. FSMI59 has the highest factor loading of .82. Since all the factor loadings are above .6, this is a good measure of kin care for family.
